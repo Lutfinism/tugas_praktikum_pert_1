@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lutfi Husaeri</title>
+	<link  rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="../../Bootstrap/css/bootstrap.css">
+	<!-- <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Material+Icons"> -->
+	<script defer src="https://use.fontawesome.com/releases/v5.0.12/js/all.js" integrity="sha384-Voup2lBiiyZYkRto2XWqbzxHXwzcm4A5RfdfG6466bu5LqjwwrjXCMBQBLMWh7qR" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	
+</head>
+<body onload="submitAll()">
+	<div class="row">
+		<div class="col-12" id="navbar">
+			<ul>
+
+				<li><div class="col">
+					<p style="text-align:center;display: inline-block">
+		
+						<a href="#" style="display: block;"></a></div></li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12 gray">
+			<h1>RANDOM USER GENERATOR</h1>
+            <button onclick="submitAll()" id="col">kocok</button>
+		</div>
+	</div>
+	<div class="card">
+			<div class="card-body" id="main">
+					
+			</div>
+			<div class="card-body size">
+				<ul>
+            
+
+				</ul>
+			</div>
+		
+	</div>
+</body>
+<script type="text/javascript">
+			var m;
+			var a=document.getElementById("main");
+		   var mainDiv=document.createElement("div");
+		   var img=document.createElement("img");
+		   var s=document.createElement("hr");
+		   var first=document.createElement("p");
+		   s.className="hr";
+		   first.className="fir";
+	function submitAll()
+		{	
+		   
+		     var xmlhttp = new XMLHttpRequest();
+			 xmlhttp.onreadystatechange = function() {
+		     if (this.readyState == 4 && this.status == 200){ 
+		       // console.log("ha");
+		       m=JSON.parse(this.responseText);
+		       		console.log(m["results"][0].picture["large"]);
+					   img.src=m["results"][0].picture["large"];
+					   
+					   first.innerHTML="Hi, nama saya adalah <br><h4> "+m["results"][0].name.first+" "+m["results"][0].name.last+"</h4>";
+						mainDiv.appendChild(img);
+						mainDiv.appendChild(s);
+					   mainDiv.appendChild(first);
+					   console.log(m["results"][0].email);
+					   a.appendChild(mainDiv);
+			}       
+		};
+		xmlhttp.open("GET", "https://randomuser.me/api", true);
+		xmlhttp.send();
+	}
+	function name()
+	{
+		// document.getElementById("1").style.color="green";
+		first.innerHTML="Hi, My name is <br><h4> "+m["results"][0].name.first+" "+m["results"][0].name.last+"</h4>";
+	}
+	function email()
+	{
+		// document.getElementById("2").style.color="green";
+		first.innerHTML="My email address is <br><h4>"+m["results"][0].email+"</h4>";
+	}
+	function bday()
+	{
+		// document.getElementById("3").style.color="green";
+		var date=new Date(m["results"][0].dob.date).getDate();
+		var month=new Date(m["results"][0].dob.date).getMonth();
+		var year=new Date(m["results"][0].dob.date).getFullYear();
+		var dob=date+"-"+month+"-"+year;
+		first.innerHTML="My birthday is <br><h4>"+dob+"</h4>";
+	}
+
+</script>
+</html>

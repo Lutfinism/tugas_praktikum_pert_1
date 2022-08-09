@@ -19,4 +19,4 @@ const generate = () => {
     image.src =
       "https://awsimages.detik.net.id/community/media/visual/2022/08/02/pengasuh-padepokan-nur-dzat-sejati-gus-samsudin-jadab-1_169.jpeg?w=700&q=90";
   }
-};
+}; 
